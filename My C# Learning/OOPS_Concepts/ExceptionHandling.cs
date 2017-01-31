@@ -78,4 +78,42 @@ namespace MyNameSpace
     will give a compilation error.
 
 
+	Now that we know what is an exception and how to handle it, we need to make sure we are using it when we have no other way i.e. we are not doing "EXCEPTION 
+	HANDLING ABUSE".
+
+	What is Exception Handling Abuse? 
+	We should always try that an Exception does not occur at the first place, rather than allowing it to take place and then handle it. For Example: In the above
+	program rather tan allwoing the file not found exception to occur we should check if the file exists before trying to read from it. 
+	This can be done by a simple if-else logic and we can print appropriate messages rather than using exceptions.
+	The above program can be re-written as:
+
+using System;
+using System.IO;
+
+namespace MyNameSpace
+{
+    class MainClass
+    {
+        static void Main(string[] args)
+        {
+            StreamReader readThisFile = null;
+            string filePath = @"C:\Users\harry\Desktop\exitNotesPaette.txt";
+            if (File.Exists(filePath))
+            {
+                readThisFile = new StreamReader(filePath);
+                Console.WriteLine(readThisFile.ReadToEnd());
+            }
+            else
+            {
+                Console.WriteLine("ERROR:: Something is wrong with file path or name.Please check again");
+            }
+            if (readThisFile != null)
+                readThisFile.Close();
+            Console.Read();
+        }
+    }
+}
+
+So the bottom line is do not use exceptions until needed.
+
 */
