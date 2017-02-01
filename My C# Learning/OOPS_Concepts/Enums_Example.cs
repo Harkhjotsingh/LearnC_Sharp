@@ -72,4 +72,35 @@ namespace EnumsSpace
     Notice that the code is more readable now, just by looking a line 11,12 and 13 we can tell the course name of the student. 
     Also if the scale of this program increases to accomodate more courses like agriculture,politics etc. Its much more easily maintainble.
 
+
+    NOTES:: Some extra information on Enums:
+    1. Enums are value type.
+    2. There is a base class library in .NET named "Enum". On the other hand "enum" is the key word used to declare Enums. 
+    3. By default data type Enums is "int". But it can be changed. Syntax is <accessModifier> enum <enumName> : <datatype>
+                                                                        ex:   public enum Gender : byte
+    4. By default the number associated with fisrt element is 0 and gets increment by 1. But it can be changed and dosent have to in any form of sequence. 
+    for ex: public enum Gender : byte
+            {
+                Male = 10;
+                female = 20;
+            }        
+
+    The only thing is that the numbers must be in the range of the type.
+         for ex:
+          public enum Gender : byte
+            {
+                Male = 10;                 // valid
+                female = 500;              // invalid. Since the max value byte can hold is 255. 
+            }  
+    
+    5. We cannot directly assign a number to enum Element outside of it without an explicit cast. 
+       for ex:
+                Gender xyz = 3;            // invalid. It needs to be Typecasted with enum type (remember enum is a value type)
+                Gender xyz = (Gender)3;    // valid. Casted to enum type.                                
+    6. Similarly like above we cannot assign enum to numbers directly without casting.
+        for ex:
+                int number = Gender.unknown;                    // invalid. It needs to be Typecasted with enum Int32
+                int number = Convert.ToInt32(Gender.unknown);   // Valid. Casted to int type. 
+    
+    7. Because of point 5 and 6 enums are called Strongly type constants.
  */
